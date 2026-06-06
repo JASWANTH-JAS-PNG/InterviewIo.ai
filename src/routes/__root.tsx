@@ -84,6 +84,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "AI-powered mock interview simulator for engineering placements." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "PlacementPrep AI" },
+      { name: "twitter:description", content: "AI-powered mock interview simulator for engineering placements." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/2c584af9-88a1-4eb8-8ec1-4ac3144acf62" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/2c584af9-88a1-4eb8-8ec1-4ac3144acf62" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
