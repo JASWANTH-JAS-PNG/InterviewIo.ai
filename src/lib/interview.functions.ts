@@ -97,9 +97,9 @@ Output JSON shape:
 const EvalInput = z.object({
   role: RoleSchema,
   difficulty: DifficultySchema,
-  question: z.string(),
-  keywords: z.array(z.string()),
-  answer: z.string(),
+  question: z.string().min(1).max(500),
+  keywords: z.array(z.string().min(1).max(50)).max(20),
+  answer: z.string().max(5000),
 });
 
 const EvalSchema = z.object({
