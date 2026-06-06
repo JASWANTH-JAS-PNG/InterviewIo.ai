@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { generateText, Output } from "ai";
+import { generateObject } from "ai";
 import { z } from "zod";
 import { createLovableAiGatewayProvider } from "./ai-gateway.server";
 
@@ -30,21 +30,19 @@ export const generateQuestions = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => QuestionsInput.parse(input))
   .handler(async ({ data }) => {
     const g = gateway();
-    const { experimental_output } = await generateText({
+    const { object } = await generateObject({
       model: g(MODEL),
-      experimental_output: Output.object({
-        schema: z.object({
-          questions: z
-            .array(
-              z.object({
-                question: z.string(),
-                category: z.enum(["Conceptual", "Coding", "System Design", "Behavioural"]),
-                keywords: z.array(z.string()),
-              }),
-            )
-            .min(3)
-            .max(10),
-        }),
+      schema: z.object({
+        questions: z
+          .array(
+            z.object({
+              question: z.string(),
+              category: z.enum(["Conceptual", "Coding", "System Design", "Behavioural"]),
+              keywords: z.array(z.string()),
+            }),
+          )
+          .min(3)
+          .max(10),
       }),
       prompt: `You are an expert technical interviewer for campus placements.
 
@@ -58,8 +56,9 @@ Rules:
 - Do NOT number the questions.`,
     });
 
-    return experimental_output;
+    return object;
   });
+
 
 const EvalInput = z.object({
   role: RoleSchema,
@@ -84,16 +83,14 @@ export const evaluateAnswer = createServerFn({ method: "POST" })
       };
     }
 
-    const { experimental_output } = await generateText({
+    const { object } = await generateObject({
       model: g(MODEL),
-      experimental_output: Output.object({
-        schema: z.object({
-          score: z.number().min(0).max(10),
-          strengths: z.array(z.string()),
-          improvements: z.array(z.string()),
-          modelAnswer: z.string(),
-          coverage: z.array(z.object({ keyword: z.string(), covered: z.boolean() })),
-        }),
+      schema: z.object({
+        score: z.number().min(0).max(10),
+        strengths: z.array(z.string()),
+        improvements: z.array(z.string()),
+        modelAnswer: z.string(),
+        coverage: z.array(z.object({ keyword: z.string(), covered: z.boolean() })),
       }),
       prompt: `You are a strict but fair technical interviewer grading a candidate.
 
@@ -122,5 +119,6 @@ Return:
 - coverage: for EACH expected keyword, true if the candidate clearly addressed that concept (even with synonyms), else false.`,
     });
 
-    return experimental_output;
+    return object;
   });
+
