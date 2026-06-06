@@ -48,7 +48,7 @@ function LandingPage() {
   const mutation = useMutation({
     mutationFn: generate,
     onSuccess: (data, vars) => {
-      const input = vars.data as { role: Role; difficulty: Difficulty; count: number };
+      const input = vars?.data as { role: Role; difficulty: Difficulty; count: number };
       saveSession({
         role: input.role,
         difficulty: input.difficulty,
@@ -59,6 +59,7 @@ function LandingPage() {
       });
       navigate({ to: "/interview" });
     },
+
     onError: (err: unknown) => {
       const msg = err instanceof Error ? err.message : "Something went wrong";
       if (msg.includes("429")) toast.error("Rate limit reached — please try again in a moment.");
