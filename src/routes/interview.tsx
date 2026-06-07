@@ -141,73 +141,82 @@ function InterviewPage() {
       </header>
 
       <main className="mx-auto max-w-6xl px-6 py-10 grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
-        {done ? (
-          <div className="rounded-3xl border border-border bg-card-gradient p-10 text-center shadow-card">
-            <CheckCircle2 className="h-12 w-12 text-success mx-auto" />
-            <h2 className="text-2xl font-semibold mt-4">Interview complete</h2>
-            <p className="text-muted-foreground mt-2">Let's see how you did.</p>
-            <Button onClick={finish} size="lg" className="mt-6 bg-hero-gradient text-primary-foreground shadow-glow">
-              See results <ArrowRight className="h-4 w-4 ml-2" />
-            </Button>
-          </div>
-        ) : !lastEval ? (
-          <div className="rounded-3xl border border-border bg-card shadow-card p-6 md:p-8">
-            <div className="flex items-center gap-2 text-xs">
-              <span className="rounded-full bg-primary/10 text-primary px-2 py-0.5 font-medium">
-                {current.category}
-              </span>
-              <span className="text-muted-foreground capitalize">{session.difficulty}</span>
-            </div>
-            <h2 className="text-xl md:text-2xl font-semibold mt-4 leading-snug">
-              {current.question}
-            </h2>
-
-            <Textarea
-              value={answer}
-              onChange={(e) => {
-                setAnswer(e.target.value);
-                saveDraftAnswer(idx, e.target.value);
-              }}
-              placeholder="Type your answer here. Be specific — explain the why, not just the what."
-              className="mt-6 min-h-[200px] resize-y text-base"
-              disabled={mutation.isPending}
-            />
-
-            <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-              <button
-                onClick={skip}
-                disabled={mutation.isPending}
-                className="text-sm text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5"
-              >
-                <SkipForward className="h-4 w-4" /> Skip (0 score)
-              </button>
-              <Button
-                onClick={submit}
-                disabled={mutation.isPending}
-                size="lg"
-                className="bg-hero-gradient text-primary-foreground shadow-glow w-full sm:w-auto"
-              >
-                {mutation.isPending ? (
-                  <>
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Evaluating…
-                  </>
-                ) : (
-                  <>Submit answer</>
-                )}
+        <div className="lg:col-span-3">
+          {done ? (
+            <div className="rounded-3xl border border-border bg-card-gradient p-10 text-center shadow-card">
+              <CheckCircle2 className="h-12 w-12 text-success mx-auto" />
+              <h2 className="text-2xl font-semibold mt-4">Interview complete</h2>
+              <p className="text-muted-foreground mt-2">Let's see how you did.</p>
+              <Button onClick={finish} size="lg" className="mt-6 bg-hero-gradient text-primary-foreground shadow-glow">
+                See results <ArrowRight className="h-4 w-4 ml-2" />
               </Button>
             </div>
-          </div>
-        ) : (
-          <FeedbackCard
-            evaluation={lastEval}
-            question={current.question}
-            onNext={next}
-            isLast={idx + 1 === total}
-            onFinish={finish}
-          />
-        )}
+          ) : !lastEval ? (
+            <div className="rounded-3xl border border-border bg-card shadow-card p-6 md:p-8">
+              <div className="flex items-center gap-2 text-xs">
+                <span className="rounded-full bg-primary/10 text-primary px-2 py-0.5 font-medium">
+                  {current.category}
+                </span>
+                <span className="text-muted-foreground capitalize">{session.difficulty}</span>
+              </div>
+              <h2 className="text-xl md:text-2xl font-semibold mt-4 leading-snug">
+                {current.question}
+              </h2>
+
+              <Textarea
+                value={answer}
+                onChange={(e) => {
+                  setAnswer(e.target.value);
+                  saveDraftAnswer(idx, e.target.value);
+                }}
+                placeholder="Type your answer here. Be specific — explain the why, not just the what."
+                className="mt-6 min-h-[200px] resize-y text-base"
+                disabled={mutation.isPending}
+              />
+
+              <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <button
+                  onClick={skip}
+                  disabled={mutation.isPending}
+                  className="text-sm text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5"
+                >
+                  <SkipForward className="h-4 w-4" /> Skip (0 score)
+                </button>
+                <Button
+                  onClick={submit}
+                  disabled={mutation.isPending}
+                  size="lg"
+                  className="bg-hero-gradient text-primary-foreground shadow-glow w-full sm:w-auto"
+                >
+                  {mutation.isPending ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      Evaluating…
+                    </>
+                  ) : (
+                    <>Submit answer</>
+                  )}
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <FeedbackCard
+              evaluation={lastEval}
+              question={current.question}
+              onNext={next}
+              isLast={idx + 1 === total}
+              onFinish={finish}
+            />
+          )}
+          <p className="text-center text-xs text-muted-foreground mt-6">
+            Your active progress is saved locally to this session.
+          </p>
+        </div>
+        <aside className="lg:col-span-1">
+          <AdPlaceholder variant="skyscraper" />
+        </aside>
       </main>
+      <SiteFooter />
     </div>
   );
 }
