@@ -11,10 +11,15 @@ import {
   loadSession,
   ROLE_META,
   saveSession,
+  saveDraftAnswer,
+  loadDraftAnswer,
+  clearDraftAnswer,
   type Evaluation,
   type InterviewSession,
 } from "@/lib/session-store";
 import { toast } from "sonner";
+import { AdPlaceholder } from "@/components/AdPlaceholder";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const Route = createFileRoute("/interview")({
   head: () => ({ meta: [{ title: "Interview · PlacementPrep AI" }] }),
