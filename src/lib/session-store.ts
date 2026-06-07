@@ -1,7 +1,15 @@
 // Client-side session storage for the in-progress interview.
 // No auth yet (Phase 2). State lives in sessionStorage so a refresh keeps it.
 
-export type Role = "frontend" | "backend" | "data-science";
+export type Role =
+  | "frontend"
+  | "backend"
+  | "fullstack"
+  | "data-science"
+  | "mobile"
+  | "devops"
+  | "cybersecurity"
+  | "blockchain";
 export type Difficulty = "beginner" | "intermediate" | "advanced";
 
 export type Question = {
@@ -70,10 +78,40 @@ export const ROLE_META: Record<Role, { title: string; tagline: string; sample: s
     sample: ["REST vs GraphQL", "SQL & indexes", "JWT & sessions", "Caching"],
     emoji: "⚙️",
   },
+  fullstack: {
+    title: "Full-Stack Engineer",
+    tagline: "End-to-end product builders across web stacks.",
+    sample: ["Auth flows", "API design", "State management", "Deployment"],
+    emoji: "🧩",
+  },
   "data-science": {
     title: "Data Science / ML",
     tagline: "Statistics, ML algorithms, Python, and intuition.",
     sample: ["Bias-variance", "Bagging vs boosting", "Class imbalance", "Feature engineering"],
     emoji: "📊",
+  },
+  mobile: {
+    title: "Mobile Developer",
+    tagline: "iOS, Android, and cross-platform apps.",
+    sample: ["Swift/Kotlin", "React Native", "App lifecycle", "Offline-first"],
+    emoji: "📱",
+  },
+  devops: {
+    title: "DevOps / Cloud",
+    tagline: "CI/CD, containers, infra-as-code, observability.",
+    sample: ["Docker & K8s", "AWS/GCP", "Terraform", "Monitoring"],
+    emoji: "☁️",
+  },
+  cybersecurity: {
+    title: "Cyber Security",
+    tagline: "AppSec, network security, threat modelling.",
+    sample: ["OWASP Top 10", "Crypto basics", "Auth attacks", "Zero trust"],
+    emoji: "🛡️",
+  },
+  blockchain: {
+    title: "Blockchain / Web3",
+    tagline: "Smart contracts, consensus, on-chain apps.",
+    sample: ["Solidity", "EVM gas", "Consensus", "Wallet UX"],
+    emoji: "⛓️",
   },
 };
