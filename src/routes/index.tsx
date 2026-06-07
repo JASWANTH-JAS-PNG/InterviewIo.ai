@@ -93,45 +93,25 @@ function LandingPage() {
         </div>
       </header>
 
-      {/* Hero */}
+      {/* Hero — floating tech tag cloud */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-mesh opacity-70 pointer-events-none" />
-        <div className="relative mx-auto max-w-6xl px-6 pt-16 pb-12 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 backdrop-blur px-3 py-1 text-xs text-muted-foreground mb-6">
-            <span className="h-1.5 w-1.5 rounded-full bg-success" />
-            Built for B.Tech & MCA placements
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-            Crack your interview with <span className="text-gradient">AI feedback</span>
-          </h1>
-          <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Pick a role, answer realistic questions, and get an instant score with strengths, gaps,
-            and the ideal answer — like having a senior engineer in your room.
-          </p>
-
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto text-left">
-            {[
-              { Icon: Brain, t: "Role-specific Qs", d: "Tailored to your track" },
-              { Icon: Target, t: "Per-answer scoring", d: "0–10 with rubric" },
-              { Icon: Sparkles, t: "Model answers", d: "Learn the ideal" },
-            ].map(({ Icon, t, d }) => (
-              <div
-                key={t}
-                className="rounded-xl border border-border bg-card/60 backdrop-blur p-4 flex gap-3"
-              >
-                <Icon className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <div>
-                  <div className="text-sm font-medium">{t}</div>
-                  <div className="text-xs text-muted-foreground">{d}</div>
-                </div>
-              </div>
-            ))}
+        <div className="relative mx-auto max-w-6xl px-6 pt-10 sm:pt-16 pb-8">
+          <FloatingTagCloud />
+          <div className="mt-4 flex justify-center">
+            <a
+              href="#choose"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 backdrop-blur px-4 py-2 text-sm text-foreground hover:border-primary/40 transition-colors"
+            >
+              Start your mock interview
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
         </div>
       </section>
 
       {/* Selector */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      <section id="choose" className="mx-auto max-w-6xl px-6 pb-24">
+
         <div className="rounded-3xl border border-border bg-card shadow-card p-6 md:p-10">
           <div className="flex items-baseline justify-between mb-6">
             <h2 className="text-2xl font-semibold">Choose your track</h2>
