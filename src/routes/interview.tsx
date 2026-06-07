@@ -39,6 +39,7 @@ function InterviewPage() {
       return;
     }
     setSession(s);
+    setAnswer(loadDraftAnswer(s.answers.length));
   }, [navigate]);
 
   const evalFn = useServerFn(evaluateAnswer);
