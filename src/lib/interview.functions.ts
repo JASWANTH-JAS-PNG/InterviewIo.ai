@@ -5,13 +5,27 @@ import { createLovableAiGatewayProvider } from "./ai-gateway.server";
 
 const MODEL = "google/gemini-3-flash-preview";
 
-const RoleSchema = z.enum(["frontend", "backend", "data-science"]);
+const RoleSchema = z.enum([
+  "frontend",
+  "backend",
+  "fullstack",
+  "data-science",
+  "mobile",
+  "devops",
+  "cybersecurity",
+  "blockchain",
+]);
 const DifficultySchema = z.enum(["beginner", "intermediate", "advanced"]);
 
 const ROLE_LABELS: Record<string, string> = {
   frontend: "Frontend Engineering (React, JS, HTML/CSS, web performance)",
   backend: "Backend Engineering (APIs, databases, auth, system design fundamentals)",
+  fullstack: "Full-Stack Engineering (frontend + backend + deployment fundamentals)",
   "data-science": "Data Science / ML (statistics, ML algorithms, Python, data wrangling)",
+  mobile: "Mobile Development (iOS Swift, Android Kotlin, React Native, app lifecycle)",
+  devops: "DevOps / Cloud (CI/CD, Docker, Kubernetes, AWS/GCP, IaC, observability)",
+  cybersecurity: "Cyber Security (AppSec, OWASP, network security, cryptography, threat modelling)",
+  blockchain: "Blockchain / Web3 (Solidity, EVM, consensus, smart contracts, wallet UX)",
 };
 
 function gateway() {
