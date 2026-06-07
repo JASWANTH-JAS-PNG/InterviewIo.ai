@@ -62,6 +62,7 @@ export function FloatingTagCloud() {
             style={{
               top: t.top,
               left: t.left,
+              ["--r" as string]: `${t.rotate ?? 0}deg`,
               transform: `translate(-50%, -50%) rotate(${t.rotate ?? 0}deg)`,
               zIndex: t.z ?? 20,
               animationDelay: `${t.delay ?? 0}s`,
