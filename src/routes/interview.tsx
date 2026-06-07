@@ -78,6 +78,7 @@ function InterviewPage() {
     if (updated.answers.length === total) updated.completed = true;
     setSession(updated);
     saveSession(updated);
+    clearDraftAnswer();
     setLastEval(evaluation);
   };
 
