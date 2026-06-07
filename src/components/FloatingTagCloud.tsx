@@ -75,12 +75,12 @@ export function FloatingTagCloud() {
 
         {/* Central headline */}
         <div className="absolute inset-0 grid place-items-center pointer-events-none">
-          <div className="text-center px-4">
-            <h1 className="font-display font-bold tracking-tight text-4xl sm:text-6xl md:text-7xl">
-              Find what's <span className="text-gradient">next</span>
+          <div className="text-center px-4 max-w-3xl">
+            <h1 className="font-display font-bold tracking-tight text-3xl sm:text-5xl md:text-6xl leading-tight">
+              Crack your interview with <span className="text-gradient">AI feedback</span>
             </h1>
-            <p className="mt-4 text-sm sm:text-base text-muted-foreground max-w-xl mx-auto">
-              Practice realistic interviews across the roles, stacks, and cities you're targeting.
+            <p className="mt-4 text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
+              Pick a role, answer realistic questions, and get an instant score with strengths, gaps, and the ideal answer — like having a senior engineer in your room.
             </p>
           </div>
         </div>
