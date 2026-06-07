@@ -121,15 +121,15 @@ function LandingPage() {
             <span className="text-xs text-muted-foreground">Step 1 of 2</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {(Object.keys(ROLE_META) as Role[]).map((r) => {
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {(["frontend", "backend", "fullstack", "data-science", "mobile", "devops"] as Role[]).map((r) => {
               const meta = ROLE_META[r];
               const active = role === r;
               return (
                 <button
                   key={r}
                   onClick={() => setRole(r)}
-                  className={`group text-left rounded-2xl border p-5 transition-all ${
+                  className={`group text-left rounded-2xl border p-5 transition-all flex flex-col min-h-[230px] ${
                     active
                       ? "border-primary bg-card-gradient shadow-glow scale-[1.01]"
                       : "border-border bg-card hover:border-primary/40 hover:shadow-card"
@@ -138,7 +138,7 @@ function LandingPage() {
                   <div className="text-3xl mb-3">{meta.emoji}</div>
                   <div className="font-semibold">{meta.title}</div>
                   <p className="text-sm text-muted-foreground mt-1">{meta.tagline}</p>
-                  <div className="mt-4 flex flex-wrap gap-1.5">
+                  <div className="mt-auto pt-4 flex flex-wrap gap-1.5">
                     {meta.sample.map((s) => (
                       <span
                         key={s}
