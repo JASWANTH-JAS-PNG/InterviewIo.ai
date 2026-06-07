@@ -43,15 +43,16 @@ export type InterviewSession = {
 };
 
 const KEY = "pp_session_v1";
+const DRAFT_KEY = "pp_draft_answer_v1";
 
 export function saveSession(s: InterviewSession) {
   if (typeof window === "undefined") return;
-  sessionStorage.setItem(KEY, JSON.stringify(s));
+  localStorage.setItem(KEY, JSON.stringify(s));
 }
 
 export function loadSession(): InterviewSession | null {
   if (typeof window === "undefined") return null;
-  const raw = sessionStorage.getItem(KEY);
+  const raw = localStorage.getItem(KEY);
   if (!raw) return null;
   try {
     return JSON.parse(raw) as InterviewSession;
@@ -62,7 +63,30 @@ export function loadSession(): InterviewSession | null {
 
 export function clearSession() {
   if (typeof window === "undefined") return;
-  sessionStorage.removeItem(KEY);
+  localStorage.removeItem(KEY);
+  localStorage.removeItem(DRAFT_KEY);
+}
+
+export function saveDraftAnswer(idx: number, text: string) {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(DRAFT_KEY, JSON.stringify({ idx, text }));
+}
+
+export function loadDraftAnswer(idx: number): string {
+  if (typeof window === "undefined") return "";
+  const raw = localStorage.getItem(DRAFT_KEY);
+  if (!raw) return "";
+  try {
+    const d = JSON.parse(raw) as { idx: number; text: string };
+    return d.idx === idx ? d.text : "";
+  } catch {
+    return "";
+  }
+}
+
+export function clearDraftAnswer() {
+  if (typeof window === "undefined") return;
+  localStorage.removeItem(DRAFT_KEY);
 }
 
 export const ROLE_META: Record<Role, { title: string; tagline: string; sample: string[]; emoji: string }> = {
