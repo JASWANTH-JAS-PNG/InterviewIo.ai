@@ -181,7 +181,7 @@ function LandingPage() {
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              6 questions · ~10 minutes · instant AI feedback
+              20 questions · ~30 minutes · instant AI feedback
             </p>
             <Button
               size="lg"
