@@ -67,7 +67,7 @@ async function generateJSON<T>(prompt: string, schema: z.ZodType<T>): Promise<T>
 const QuestionsInput = z.object({
   role: RoleSchema,
   difficulty: DifficultySchema,
-  count: z.number().min(3).max(10).default(6),
+  count: z.number().min(3).max(25).default(20),
 });
 
 const QuestionsSchema = z.object({
@@ -80,7 +80,7 @@ const QuestionsSchema = z.object({
       }),
     )
     .min(3)
-    .max(10),
+    .max(25),
 });
 
 export const generateQuestions = createServerFn({ method: "POST" })
