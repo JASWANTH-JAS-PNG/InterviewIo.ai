@@ -75,7 +75,7 @@ function LandingPage() {
   const start = () => {
     if (!role) return;
     clearSession();
-    mutation.mutate({ data: { role, difficulty, count: 6 } });
+    mutation.mutate({ data: { role, difficulty, count: 20 } });
   };
 
   return (
