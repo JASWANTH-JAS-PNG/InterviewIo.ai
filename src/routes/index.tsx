@@ -2,8 +2,9 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { Sparkles, Brain, Target, Loader2, ArrowRight } from "lucide-react";
+import { Sparkles, Loader2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { FloatingTagCloud } from "@/components/FloatingTagCloud";
 import { generateQuestions } from "@/lib/interview.functions";
 import {
   ROLE_META,
