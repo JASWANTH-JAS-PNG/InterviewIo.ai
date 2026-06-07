@@ -14,6 +14,8 @@ import {
   clearSession,
 } from "@/lib/session-store";
 import { toast } from "sonner";
+import { AdPlaceholder } from "@/components/AdPlaceholder";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -77,7 +79,8 @@ function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
+      <AdPlaceholder variant="banner" />
       {/* Header */}
       <header className="border-b border-border/60 backdrop-blur sticky top-0 z-20 bg-background/80">
         <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
@@ -202,9 +205,10 @@ function LandingPage() {
         </div>
 
         <p className="text-center text-xs text-muted-foreground mt-8">
-          Your answers stay in this session only — nothing is stored.
+          Your active progress is saved locally to this session.
         </p>
       </section>
+      <SiteFooter />
     </div>
   );
 }
