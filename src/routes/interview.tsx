@@ -140,7 +140,7 @@ function InterviewPage() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-3xl px-6 py-10">
+      <main className="mx-auto max-w-6xl px-6 py-10 grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
         {done ? (
           <div className="rounded-3xl border border-border bg-card-gradient p-10 text-center shadow-card">
             <CheckCircle2 className="h-12 w-12 text-success mx-auto" />
@@ -164,7 +164,10 @@ function InterviewPage() {
 
             <Textarea
               value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
+              onChange={(e) => {
+                setAnswer(e.target.value);
+                saveDraftAnswer(idx, e.target.value);
+              }}
               placeholder="Type your answer here. Be specific — explain the why, not just the what."
               className="mt-6 min-h-[200px] resize-y text-base"
               disabled={mutation.isPending}
