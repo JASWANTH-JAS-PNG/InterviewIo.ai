@@ -138,4 +138,17 @@
   }
   .shadow-glow { box-shadow: var(--shadow-glow); }
   .shadow-card { box-shadow: var(--shadow-card); }
+
+  .tag-float {
+    animation-name: tag-drift;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+  }
+}
+
+@keyframes tag-drift {
+  0%   { transform: translate(-50%, -50%) rotate(var(--r, 0deg)) translateY(0px) translateX(0px); }
+  50%  { transform: translate(-50%, -50%) rotate(var(--r, 0deg)) translateY(-10px) translateX(6px); }
+  100% { transform: translate(-50%, -50%) rotate(var(--r, 0deg)) translateY(8px) translateX(-6px); }
 }
